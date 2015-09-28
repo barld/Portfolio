@@ -24,9 +24,9 @@
         </ul>
     </div>
     <div class="col-md-3" ng-controller="ProjectController" >
-        <h3>Projecten</h3>
+        <h3><a asp-controller="Project" asp-action="index">Projecten</a></h3>
         <ul ng-repeat="p in all">
-            <li>{{p.Name}}</li>
+            <li><a href="~/Project/{{p.Name}}">{{p.Name}}</a></li>
         </ul>
     </div>
     <div class="col-md-3">

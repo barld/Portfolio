@@ -13,19 +13,25 @@ namespace Portfolio.Controllers
     public class ProjectController : Controller
     {
         private readonly IHostingEnvironment _environment;
+        private readonly Projects _projects;
         public ProjectController(IHostingEnvironment environment)
         {
             _environment = environment;
+            _projects = new Projects(_environment.WebRootPath);
+            
         }
 
         // GET: /<controller>/
-        public IActionResult Index()
+        public IActionResult Index() => View(_projects.All);
+
+        [Route("[controller]/{projectName}")]
+        public IActionResult Get(string projectName)
         {
-            var projects = new Projects(_environment.WebRootPath);
-
-
-
-            return View(projects.All);
+            if(_projects.All.Count(p => p.Name == projectName) == 1)
+            {
+                return View("ProjectPage", _projects.All.First(p => p.Name == projectName));
+            }
+            return Json(projectName);
         }
     }
 }

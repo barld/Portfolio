@@ -1,0 +1,12 @@
+﻿@model Project
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewBag.Title = "Project - "+Model.Name;
+    var md = new MarkdownDeep.Markdown();
+}
+
+<article>
+    @Html.Raw(md.Transform(Model.RawContent))
+</article>
