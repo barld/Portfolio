@@ -6,28 +6,14 @@ using System.IO;
 
 namespace Portfolio.Models
 {
-    public class Projects
+    public class Projects : MarkDownFactory<Project>
     {
-        private string projectsDirectory;
-
-        public Projects(string webRootPath)
-        {
-            this.projectsDirectory = Path.Combine(webRootPath, "Projects/");
-        }
-
-        public IEnumerable<Project> All => Directory.GetFiles(this.projectsDirectory).Select(f => new Project(f));
+        public Projects(string webRootPath) : base(webRootPath, "Projects/"){}
+        public override Project Create(string fileName) => new Project(fileName);
     }
 
-    public class Project
+    public class Project : MarkDownModel
     {
-        public Project(string fileName)
-        {
-            this.FileName = fileName;
-            this.Name = Path.GetFileNameWithoutExtension(fileName);
-        }
-        public int ID { get; set; }
-        public string FileName { get; }
-        public string Name { get; set; }
-        public string RawContent => File.ReadAllText(this.FileName);
+        public Project(string fileName) : base(fileName){}
     }
 }
