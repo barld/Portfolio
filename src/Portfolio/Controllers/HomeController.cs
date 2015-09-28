@@ -3,13 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
+using Microsoft.AspNet.Hosting;
 
 namespace Portfolio.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IHostingEnvironment _environment;
+        public HomeController(IHostingEnvironment environment)
+        {
+            _environment = environment;
+        }
+
         public IActionResult Index()
         {
+            var b = _environment.WebRootPath;
+
             return View();
         }
 

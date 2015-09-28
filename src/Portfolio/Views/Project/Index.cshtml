@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Project>
+@{
+    ViewBag.Title = "Home Page";
+
+    MarkdownDeep.Markdown md = new MarkdownDeep.Markdown();
+}
+
+<ul>
+    @foreach (var project in Model)
+    {
+        <li>
+            <article>
+                @Html.Raw(md.Transform(project.RawContent))
+            </article>
+        </li>
+    }
+</ul>
