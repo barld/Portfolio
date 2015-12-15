@@ -28,7 +28,7 @@
     "Microsoft.Framework.Logging.Console": "1.0.0-beta5",
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-beta5",
     "MarkdownDeep.NET": "1.5.0",
-    "angularjs": "1.4.6"
+    "angularjs": "1.4.8"
   },
 
   "commands": {
